@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clinicflow"
+version = "0.1.0"
+description = "Multi-agent clinical document workflows with responsible-AI controls"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["agents", "healthcare", "llm", "responsible-ai", "guardrails", "phi", "hipaa"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+server = ["fastapi>=0.110", "uvicorn[standard]>=0.27", "pydantic>=2.5"]
+dev = ["pytest>=8.0", "pytest-cov>=4.1", "ruff>=0.4", "fastapi>=0.110", "httpx>=0.27"]
+
+[project.scripts]
+clinicflow = "clinicflow.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/akarshanamachanpally/agentic-clinical-workflows"
+Issues = "https://github.com/akarshanamachanpally/agentic-clinical-workflows/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.coverage.run]
+source = ["clinicflow"]
+branch = true
