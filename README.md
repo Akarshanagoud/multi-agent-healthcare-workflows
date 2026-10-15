@@ -3,10 +3,12 @@
 Multi-agent document processing for healthcare, with the responsible-AI
 controls that decide whether the output is usable.
 
-[![CI](https://github.com/akarshanamachanpally/agentic-clinical-workflows/actions/workflows/ci.yml/badge.svg)](https://github.com/akarshanamachanpally/agentic-clinical-workflows/actions/workflows/ci.yml)
+[![CI](https://github.com/Akarshanagoud/multi-agent-healthcare-workflows/actions/workflows/ci.yml/badge.svg)](https://github.com/Akarshanagoud/multi-agent-healthcare-workflows/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Dependencies](https://img.shields.io/badge/core%20dependencies-none-brightgreen)
+
+**Docs:** [Architecture and use cases](docs/ARCHITECTURE.md) · [Verified results](docs/RESULTS.md)
 
 Five specialised agents route a clinical document, retrieve the relevant
 policy, extract structured fields, validate them and assemble a summary. Every

@@ -29,8 +29,8 @@ dev = ["pytest>=8.0", "pytest-cov>=4.1", "ruff>=0.4", "fastapi>=0.110", "httpx>=
 clinicflow = "clinicflow.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/akarshanamachanpally/agentic-clinical-workflows"
-Issues = "https://github.com/akarshanamachanpally/agentic-clinical-workflows/issues"
+Homepage = "https://github.com/Akarshanagoud/multi-agent-healthcare-workflows"
+Issues = "https://github.com/Akarshanagoud/multi-agent-healthcare-workflows/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
