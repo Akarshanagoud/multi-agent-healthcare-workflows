@@ -8,6 +8,9 @@ Environment:
     CLINICFLOW_MODEL      model name for the chosen provider
     CLINICFLOW_KB         path to a JSON policy corpus
     CLINICFLOW_AUDIT_LOG  JSONL path for run records
+    CLINICFLOW_SAMPLES    sample documents for the review desk queue
+
+The review desk web UI is served from the same app at ``/ui``.
 
 Note that ``/v1/process`` never returns a bare answer. It returns a decision,
 the fields with their provenance, the issues, and the agent trace - because a
@@ -29,6 +32,7 @@ except ImportError as exc:  # pragma: no cover
 
 from . import __version__
 from .agents.retriever import KnowledgeBase
+from .console import mount_console
 from .guardrails import GuardrailConfig, redact_phi, screen_document
 from .llm import build_provider
 from .orchestrator import Workflow, WorkflowConfig, escalations, summarize_batch
@@ -157,3 +161,7 @@ def search_kb(q: str, top_k: int = 4) -> list[dict[str, Any]]:
 def audit(limit: int = 50) -> dict[str, Any]:
     records = workflow.audit[-limit:]
     return {"records": len(workflow.audit), "returned": len(records), "audit": records}
+
+
+# The review desk (``/ui``) runs this workflow, so its queue and audit are the service's own.
+samples = mount_console(app, workflow)

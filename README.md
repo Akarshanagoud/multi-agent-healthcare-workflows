@@ -178,6 +178,29 @@ catch extraction errors and flag outliers — not to make clinical decisions.
 
 ## Usage
 
+### Review desk
+
+```bash
+pip install -e ".[server]"
+clinicflow ui                  # opens http://127.0.0.1:8768/ui/
+```
+
+![Document review: each extracted field highlighted in the text the agents read, with the findings that sent it to a clinician](docs/images/desk-review.png)
+
+The review desk is served by the same FastAPI app as the HTTP service:
+
+- **Review queue**: the labelled sample set through the full workflow, worst first,
+  with each decision checked against its expected outcome.
+- **Document review**: the text the agents actually read, with every extracted field
+  highlighted at its source; findings, the agent route (including what was skipped and
+  why), the reviewer's summary and the policy passages it cites.
+- **Privacy screen**: exactly what PHI minimisation removes or pseudonymises, side by
+  side with what a model would receive, plus injection screening.
+- **Policy library** and **Audit trail**: search the guideline corpus, and inspect every
+  run recorded this session.
+
+![Review queue: ten labelled documents, routed and ordered for a clinician](docs/images/desk-queue.png)
+
 ### CLI
 
 ```bash
@@ -261,8 +284,10 @@ src/clinicflow/
   guardrails.py      PHI redaction, injection screening, grounding checks
   llm.py             Provider adapters (null, echo, Ollama, OpenAI-compatible)
   orchestrator.py    Pipeline, retries, escalation, audit
-  cli.py             run / batch / demo / review / redact / kb
+  cli.py             run / batch / demo / review / redact / kb / ui
   server.py          FastAPI service
+  console.py         Review desk API: queue, document review, privacy screen
+  web/               Review desk front end: static HTML, CSS and JS, no build step
   agents/
     router.py        Scored classification with an ambiguity margin
     retriever.py     BM25 knowledge base with citations
@@ -270,7 +295,7 @@ src/clinicflow/
     validator.py     Grounding, ranges, interactions, completeness
     summarizer.py    Template-first summary with output screening
 data/                Synthetic documents and a synthetic policy corpus
-tests/               126 tests
+tests/               132 tests
 ```
 
 ## Testing

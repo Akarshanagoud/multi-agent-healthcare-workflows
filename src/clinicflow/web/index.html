@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinical Review Desk</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M16 8v16M8 16h16' stroke='white' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="kit.css">
+  <style>
+    :root { --accent: #0f766e; --accent-text: #0f766e; --accent-wash: rgba(15, 118, 110, 0.1); }
+    @media (prefers-color-scheme: dark) {
+      :root:where(:not([data-theme="light"])) { --accent-text: #5ec9b8; --accent-wash: rgba(94, 201, 184, 0.14); }
+    }
+    :root[data-theme="dark"] { --accent-text: #5ec9b8; --accent-wash: rgba(94, 201, 184, 0.14); }
+    .doc { font-family: var(--mono); font-size: 12.5px; line-height: 1.75; }
+    .conf { display: grid; grid-template-columns: 56px 34px; gap: 6px; align-items: center; }
+    .phi-note { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 12.5px; color: var(--ink-2); margin-top: 8px; }
+    .passage { border-top: 1px solid var(--border); padding: 12px 18px; }
+    .passage:first-child { border-top: 0; }
+    .passage .ptext { font-size: 13px; color: var(--ink-2); margin-top: 4px; line-height: 1.6; }
+    .side-by-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+    .side-by-side .doc { max-height: 460px; }
+    @media (max-width: 900px) { .side-by-side { grid-template-columns: minmax(0, 1fr); } }
+    .kv-list { display: flex; flex-direction: column; gap: 4px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#/queue"><span class="brand-mark" aria-hidden="true">CR</span><span class="brand-name">Clinical Review Desk</span><span class="brand-sub">clinicflow</span></a>
+      <nav class="nav" id="nav" aria-label="Sections"></nav>
+      <div class="topbar-right">
+        <span class="env-pill" id="env">connecting</span>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Theme"></button>
+      </div>
+    </div>
+  </header>
+  <main class="page" id="app"></main>
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script src="kit.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
